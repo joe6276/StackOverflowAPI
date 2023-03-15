@@ -12,8 +12,8 @@ using StackOverflowAPI.ApplicationDbContext;
 namespace StackOverflowAPI.Migrations
 {
     [DbContext(typeof(AppDbContext))]
-    [Migration("20230310072959_initialMigration")]
-    partial class initialMigration
+    [Migration("20230315125849_Migration1")]
+    partial class Migration1
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
@@ -34,6 +34,9 @@ namespace StackOverflowAPI.Migrations
 
                     b.Property<int>("AuthorId")
                         .HasColumnType("int");
+
+                    b.Property<DateTime>("CreatedDate")
+                        .HasColumnType("datetime2");
 
                     b.Property<string>("Description")
                         .IsRequired()
@@ -66,6 +69,9 @@ namespace StackOverflowAPI.Migrations
                     b.Property<int>("AnswerId")
                         .HasColumnType("int");
 
+                    b.Property<DateTime>("CreatedDate")
+                        .HasColumnType("datetime2");
+
                     b.Property<string>("Description")
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
@@ -92,6 +98,9 @@ namespace StackOverflowAPI.Migrations
 
                     b.Property<int>("Author")
                         .HasColumnType("int");
+
+                    b.Property<DateTime>("CreatedDate")
+                        .HasColumnType("datetime2");
 
                     b.Property<string>("Description")
                         .IsRequired()
@@ -132,6 +141,10 @@ namespace StackOverflowAPI.Migrations
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
+                    b.Property<string>("Role")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
                     b.HasKey("Id");
 
                     b.ToTable("users");
@@ -150,6 +163,9 @@ namespace StackOverflowAPI.Migrations
 
                     b.Property<int>("Count")
                         .HasColumnType("int");
+
+                    b.Property<DateTime>("CreatedDate")
+                        .HasColumnType("datetime2");
 
                     b.Property<int>("UserId")
                         .HasColumnType("int");

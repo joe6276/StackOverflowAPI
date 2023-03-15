@@ -12,6 +12,7 @@ namespace StackOverflowAPI.Entities
 
         public string Password { get; set; } = string.Empty;
 
+        public string Role { get; set; } = "user";
         public List<Question> Questions { get; set; } = new List<Question>();
 
         

@@ -16,6 +16,7 @@ namespace StackOverflowAPI.Entities
 
         public int AnswerId { get; set; }
 
+        public DateTime CreatedDate { get; set; } = DateTime.Now;
         public int Count { get; set; } = 0;
     }
 }

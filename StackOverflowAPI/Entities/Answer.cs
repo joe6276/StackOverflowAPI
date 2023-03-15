@@ -23,7 +23,8 @@ namespace StackOverflowAPI.Entities
         public int ? QuestionId { get; set; }
 
         public bool setPreferred { get; set; }=false;
-        
+
+        public DateTime CreatedDate { get; set; } = DateTime.Now;
         public List<Comment> comments { get; set; } 
         public List<Vote> Votes { get; set; } = new List<Vote>();
     }
