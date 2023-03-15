@@ -11,6 +11,7 @@ namespace StackOverflowAPI.Entities
 
         public string Description { get; set; } = string.Empty;
 
+        public DateTime CreatedDate { get; set; }= DateTime.Now;
         public string Tags { get; set; } = string.Empty;
 
         [ForeignKey("Author")]
