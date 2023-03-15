@@ -1,5 +1,8 @@
 using Microsoft.EntityFrameworkCore;
 using StackOverflowAPI.ApplicationDbContext;
+using StackOverflowAPI.Interfaces;
+using StackOverflowAPI.Repositories;
+using System.ComponentModel;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -17,6 +20,14 @@ builder.Services.AddDbContext<AppDbContext>(options =>
 });
 
 builder.Services.AddAutoMapper(AppDomain.CurrentDomain.GetAssemblies());
+
+
+
+//AddingNewEventArgs Repositories
+
+builder.Services.AddScoped<UserInterface, UsersRepository>();
+
+
 
 var app = builder.Build();
 
