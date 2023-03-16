@@ -13,6 +13,7 @@ namespace StackOverflowAPI.Controllers
     public class userController : ControllerBase
     {
 
+
         private IMapper _mapper;
         private UserInterface _userInterface;
         public userController(IMapper mapper, UserInterface userInterface)
@@ -30,11 +31,11 @@ namespace StackOverflowAPI.Controllers
             
         
         }
-<<<<<<< Updated upstream
-        [HttpGet("id")]
-=======
+
+ 
+
         [HttpGet("{id}")]
->>>>>>> Stashed changes
+
         public async Task<ActionResult<User>> getUser(int id )
         {
             var currentUser = await _userInterface.GetUserAsync(id);
@@ -49,7 +50,7 @@ namespace StackOverflowAPI.Controllers
         }
 
 
-<<<<<<< Updated upstream
+        [HttpPut("{id}")]
 
 
         public async Task <ActionResult<UserUpdateResponse>> updateUsers(UserUpdateRequest user, int id)
@@ -65,11 +66,10 @@ namespace StackOverflowAPI.Controllers
         }
 
 
-<<<<<<< Updated upstream
-        [HttpDelete("id")]
-=======
+
+
         [HttpDelete("{id}")]
->>>>>>> Stashed changes
+
         public async Task<ActionResult<UserDeleteResponse>> deleteUser(int id)
         {
             var currentUser = await _userInterface.GetUserAsync(id);

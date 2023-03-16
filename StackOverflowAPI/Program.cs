@@ -3,20 +3,12 @@ using Microsoft.IdentityModel.Tokens;
 using StackOverflowAPI.ApplicationDbContext;
 using StackOverflowAPI.Interfaces;
 using StackOverflowAPI.Repositories;
-using System.ComponentModel;
-=======
-<<<<<<< Updated upstream
-=======
-using StackOverflowAPI.Interfaces;
-using StackOverflowAPI.Repositories;
-using System.ComponentModel;
 using System.Text;
->>>>>>> Stashed changes
->>>>>>> Stashed changes
+
 
 var builder = WebApplication.CreateBuilder(args);
 
-// Add services to the container.
+
 
 builder.Services.AddControllers();
 // Learn more about configuring Swagger/OpenAPI at https://aka.ms/aspnetcore/swashbuckle
@@ -37,6 +29,8 @@ builder.Services.AddScoped<UserInterface, UsersRepository>();
 
 builder.Services.AddScoped<questionInterface, QuestionsRepository>();
 
+builder.Services.AddScoped<answerInterface, AnswerRepository>();
+
 builder.Services.AddAuthentication("Bearer").AddJwtBearer(options =>
 {
     options.TokenValidationParameters = new()
@@ -52,8 +46,7 @@ builder.Services.AddAuthentication("Bearer").AddJwtBearer(options =>
     };
 });
 
->>>>>>> Stashed changes
->>>>>>> Stashed changes
+
 var app = builder.Build();
 
 if (app.Environment.IsDevelopment())
