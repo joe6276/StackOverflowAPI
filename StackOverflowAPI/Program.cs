@@ -1,7 +1,6 @@
 using Microsoft.EntityFrameworkCore;
 using Microsoft.IdentityModel.Tokens;
 using StackOverflowAPI.ApplicationDbContext;
-<<<<<<< Updated upstream
 using StackOverflowAPI.Interfaces;
 using StackOverflowAPI.Repositories;
 using System.ComponentModel;
@@ -32,21 +31,10 @@ builder.Services.AddDbContext<AppDbContext>(options =>
 
 builder.Services.AddAutoMapper(AppDomain.CurrentDomain.GetAssemblies());
 
-<<<<<<< Updated upstream
-=======
-<<<<<<< Updated upstream
-=======
->>>>>>> Stashed changes
 
-
-//AddingNewEventArgs Repositories
 
 builder.Services.AddScoped<UserInterface, UsersRepository>();
-<<<<<<< Updated upstream
 
-
-
-=======
 builder.Services.AddScoped<questionInterface, QuestionsRepository>();
 
 builder.Services.AddAuthentication("Bearer").AddJwtBearer(options =>
@@ -68,7 +56,6 @@ builder.Services.AddAuthentication("Bearer").AddJwtBearer(options =>
 >>>>>>> Stashed changes
 var app = builder.Build();
 
-// Configure the HTTP request pipeline.
 if (app.Environment.IsDevelopment())
 {
     app.UseSwagger();

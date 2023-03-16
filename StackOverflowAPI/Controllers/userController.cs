@@ -12,11 +12,6 @@ namespace StackOverflowAPI.Controllers
     [ApiController]
     public class userController : ControllerBase
     {
-<<<<<<< Updated upstream
-=======
-<<<<<<< Updated upstream
-=======
->>>>>>> Stashed changes
 
         private IMapper _mapper;
         private UserInterface _userInterface;
@@ -57,11 +52,6 @@ namespace StackOverflowAPI.Controllers
 <<<<<<< Updated upstream
 
 
-        [HttpPut("id")]
-=======
-        [HttpPut("{id}")]
->>>>>>> Stashed changes
-
         public async Task <ActionResult<UserUpdateResponse>> updateUsers(UserUpdateRequest user, int id)
         {
             var currentUser= await _userInterface.GetUserAsync(id);
@@ -92,9 +82,5 @@ namespace StackOverflowAPI.Controllers
             await _userInterface.SaveChangesAsync();    
             return Ok(new UserDeleteResponse(204, "User Deleted Successfully"));
         }
-<<<<<<< Updated upstream
-=======
->>>>>>> Stashed changes
->>>>>>> Stashed changes
     }
 }
