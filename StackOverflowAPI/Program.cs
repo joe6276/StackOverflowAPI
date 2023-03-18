@@ -31,6 +31,10 @@ builder.Services.AddScoped<questionInterface, QuestionsRepository>();
 
 builder.Services.AddScoped<answerInterface, AnswerRepository>();
 
+builder.Services.AddScoped<commentInterface, CommentRepository>();
+
+
+
 builder.Services.AddAuthentication("Bearer").AddJwtBearer(options =>
 {
     options.TokenValidationParameters = new()
