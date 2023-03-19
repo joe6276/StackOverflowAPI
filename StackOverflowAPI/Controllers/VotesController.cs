@@ -64,10 +64,11 @@ namespace StackOverflowAPI.Controllers
         {
             var id = User.Claims.FirstOrDefault(c => c.Type == "Uid")?.Value;
             var ifvoted = await _voteInterface.CheckifVoted(int.Parse(id),answerId);
-
-            if (ifvoted == null)
+            var userid = User.Claims.FirstOrDefault(c => c.Type == "Uid")?.Value;
+            var userIdint = int.Parse(userid);
+            if (ifvoted == null|| ifvoted.UserId !=userIdint)
             {
-                return BadRequest("You cant Vote Twice");
+                return BadRequest("Not Allowed");
             }
             _voteInterface.deleteVotes(ifvoted);
             await _voteInterface.SaveChangesAsync();

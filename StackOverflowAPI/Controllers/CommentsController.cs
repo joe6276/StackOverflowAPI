@@ -73,10 +73,11 @@ namespace StackOverflowAPI.Controllers
         public async Task<ActionResult<CommentResponse>> deleteComments(int id)
         {
             var comment = await _commentInterfaces.GetCommentAsync(id);
-
-            if (comment == null)
+            var userid = User.Claims.FirstOrDefault(c => c.Type == "Uid")?.Value;
+            var userIdint = int.Parse(userid);
+            if (comment == null|| comment.UserId != userIdint)
             {
-                return BadRequest();
+                return BadRequest("Not allowed");
             }
           
             _commentInterfaces.deleteCommentAsync(comment); 
