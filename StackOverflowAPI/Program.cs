@@ -33,7 +33,7 @@ builder.Services.AddScoped<answerInterface, AnswerRepository>();
 
 builder.Services.AddScoped<commentInterface, CommentRepository>();
 
-
+builder.Services.AddScoped<VoteInterface, VotesRepository>();
 
 builder.Services.AddAuthentication("Bearer").AddJwtBearer(options =>
 {
@@ -50,6 +50,14 @@ builder.Services.AddAuthentication("Bearer").AddJwtBearer(options =>
     };
 });
 
+builder.Services.AddAuthorization(policy =>
+{
+    policy.AddPolicy("admin", policy =>
+    {
+        policy.RequireAuthenticatedUser();
+        policy.RequireClaim("Roles", "admin");
+    });
+});
 
 var app = builder.Build();
 

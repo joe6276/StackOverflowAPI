@@ -63,6 +63,7 @@ namespace StackOverflowAPI.Controllers
 
             List<Claim> claims = new List<Claim>();
             claims.Add(new Claim("Name", user.Name));
+            claims.Add(new Claim("Roles", user.Role));
             claims.Add(new Claim("Uid", user.Id.ToString()));
 
             var key = new SymmetricSecurityKey(Encoding.ASCII.GetBytes(_configuration["Authentication:SecretKey"]));
