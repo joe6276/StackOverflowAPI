@@ -116,15 +116,18 @@ namespace StackOverflowAPI.Controllers
         public async Task<ActionResult<AnswerSuccessResponse>> DeleteAnswer(int id)
         {
             var answer = await _answerInterface.getAnswer(id);
-
-            if (answer == null)
+            var userid = User.Claims.FirstOrDefault(c => c.Type == "Uid")?.Value;
+            var userIdint = int.Parse(userid);
+            if (answer == null || answer.AuthorId!=userIdint)
             {
-                return BadRequest();
+                return BadRequest("Not Allowed");
             }
             _answerInterface.removeAnswer(answer);
             await _answerInterface.saveAnswerChangesAsync();
             return Ok(new AnswerSuccessResponse(204, "Answer Deleted"));
         }
+
+
 
     }
 }

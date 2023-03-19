@@ -96,15 +96,16 @@ namespace StackOverflowAPI.Controllers
         public async Task<ActionResult<QuestionsSuccessResponse>> deleteQuestion(int id)
         {
             var currentquestion = await _questionInterface.GetQuestionAsync(id);
-
-            if (currentquestion == null)
+            var userid = User.Claims.FirstOrDefault(c => c.Type == "Uid")?.Value;
+            var userIdint = int.Parse(userid);
+            if (currentquestion == null || currentquestion.Author !=userIdint)
             {
-                return NotFound("Question Not Found");
+                return NotFound("Not Allowed");
             }
             _questionInterface.deleteQuestion(currentquestion);
             await _questionInterface.saveQuestionAsync();
 
-            return Accepted(new QuestionsSuccessResponse(204, "Question Updated Successfully"));
+            return Accepted(new QuestionsSuccessResponse(204, "Question Deleted Successfully"));
 
         }
     }
