@@ -1,10 +1,11 @@
 ﻿using StackOverflowAPI.Entities;
+using StackOverflowAPI.Repositories.Pagination;
 
 namespace StackOverflowAPI.Interfaces
 {
     public interface UserInterface
     {
-        public Task<IEnumerable<User>> GetUsersAsync();
+        public Task<(IEnumerable<User>, PaginationMetadata)> GetUsersAsync(int pageNumber, int pageSize);
 
         public Task<User> GetUserAsync(int id);
 

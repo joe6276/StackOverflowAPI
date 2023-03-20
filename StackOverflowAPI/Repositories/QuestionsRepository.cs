@@ -2,6 +2,7 @@
 using StackOverflowAPI.ApplicationDbContext;
 using StackOverflowAPI.Entities;
 using StackOverflowAPI.Interfaces;
+using StackOverflowAPI.Repositories.Pagination;
 
 namespace StackOverflowAPI.Repositories
 {
@@ -28,9 +29,12 @@ namespace StackOverflowAPI.Repositories
             return await _context.questions.Where(x => x.Id == id).FirstAsync();     
         }
 
-        public async Task<IEnumerable<Question>> GetQuestionsAsync()
+        public async Task<(IEnumerable<Question> , PaginationMetadata )> GetQuestionsAsync(int pageNumber, int pageSize)
         {
-           return await _context.questions.ToListAsync();
+          var collectiontoReturn =await _context.questions.Skip((pageNumber-1)*pageSize).Take(pageSize).ToListAsync();
+            var totalItems = await _context.questions.CountAsync();
+            var paginationMetadata= new PaginationMetadata(totalItems, pageSize,pageNumber);
+            return (collectiontoReturn, paginationMetadata);
         }
 
         public async Task<IEnumerable<Question>> getUserQuestions(int id)

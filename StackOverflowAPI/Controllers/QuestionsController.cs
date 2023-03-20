@@ -6,6 +6,7 @@ using StackOverflowAPI.Entities;
 using StackOverflowAPI.Interfaces;
 using StackOverflowAPI.Request.Question;
 using StackOverflowAPI.Response.Questions;
+using System.Text.Json;
 
 namespace StackOverflowAPI.Controllers
 {
@@ -16,7 +17,7 @@ namespace StackOverflowAPI.Controllers
     {
         private readonly IMapper _mapper;
         private readonly questionInterface _questionInterface;
-
+        private int maxPageSize = 25;
         public QuestionsController(IMapper mapper, questionInterface question)
         {
             _mapper = mapper;
@@ -24,9 +25,15 @@ namespace StackOverflowAPI.Controllers
         }
 
         [HttpGet]
-        public async Task<ActionResult<IEnumerable<Question>>> getAllQuestions()
+        public async Task<ActionResult<IEnumerable<Question>>> getAllQuestions(int pageNumber=1, int pageSize=5)
         {
-            var questions = await _questionInterface.GetQuestionsAsync();
+           
+            if(pageSize>maxPageSize)
+            {
+                pageSize= maxPageSize;
+            }
+            var (questions,paginationMetadata) = await _questionInterface.GetQuestionsAsync(pageNumber,pageSize);
+            Response.Headers.Add("X-Pagination", JsonSerializer.Serialize(paginationMetadata));
             if (questions == null)
             {
                 return NotFound("No Questions Found");
