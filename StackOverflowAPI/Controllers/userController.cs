@@ -5,6 +5,7 @@ using StackOverflowAPI.Entities;
 using StackOverflowAPI.Interfaces;
 using StackOverflowAPI.Request;
 using StackOverflowAPI.Response.User;
+using System.Text.Json;
 
 namespace StackOverflowAPI.Controllers
 {
@@ -16,6 +17,7 @@ namespace StackOverflowAPI.Controllers
 
         private IMapper _mapper;
         private UserInterface _userInterface;
+        private int maxusersPerPage = 25;
         public userController(IMapper mapper, UserInterface userInterface)
         {
                       _mapper= mapper;
@@ -24,9 +26,10 @@ namespace StackOverflowAPI.Controllers
 
         [HttpGet]
 
-        public async Task<ActionResult<IEnumerable<User>>> getUsers()
+        public async Task<ActionResult<IEnumerable<User>>> getUsers(int pageNumber=1 , int pageSize=5)
         {
-            var users = await _userInterface.GetUsersAsync();
+            var (users, pagination) = await _userInterface.GetUsersAsync(pageNumber, pageSize);
+            Response.Headers.Add("X-Pagination", JsonSerializer.Serialize(pagination));
             return Ok(users);
             
         

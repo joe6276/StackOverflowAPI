@@ -2,6 +2,7 @@
 using StackOverflowAPI.ApplicationDbContext;
 using StackOverflowAPI.Entities;
 using StackOverflowAPI.Interfaces;
+using StackOverflowAPI.Repositories.Pagination;
 
 namespace StackOverflowAPI.Repositories
 {
@@ -27,9 +28,13 @@ namespace StackOverflowAPI.Repositories
             return await _context.users.FirstAsync(x => x.Email == email);
         }
 
-        public async Task<IEnumerable<User>> GetUsersAsync()
+        public async Task<(IEnumerable<User>, PaginationMetadata)> GetUsersAsync(int pageNumber, int pageSize)
         {
-         return  await _context.users.ToListAsync();
+         var collection= await _context.users.Skip((pageNumber-1)* pageSize).Take(pageSize).ToListAsync();
+         var totalUser= await _context.users.CountAsync();
+         var pagination= new PaginationMetadata(totalUser, pageSize, pageNumber);
+         
+            return (collection, pagination);
         }
 
         public void RemoveUserAsync(User user)
