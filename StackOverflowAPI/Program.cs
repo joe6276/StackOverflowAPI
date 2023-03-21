@@ -1,6 +1,7 @@
 using Microsoft.EntityFrameworkCore;
 using Microsoft.IdentityModel.Tokens;
 using StackOverflowAPI.ApplicationDbContext;
+using StackOverflowAPI.EmailServices;
 using StackOverflowAPI.Interfaces;
 using StackOverflowAPI.Repositories;
 using System.Text;
@@ -34,6 +35,8 @@ builder.Services.AddScoped<answerInterface, AnswerRepository>();
 builder.Services.AddScoped<commentInterface, CommentRepository>();
 
 builder.Services.AddScoped<VoteInterface, VotesRepository>();
+
+builder.Services.AddScoped<EmailInterface, EmailRepository>();
 
 builder.Services.AddAuthentication("Bearer").AddJwtBearer(options =>
 {
