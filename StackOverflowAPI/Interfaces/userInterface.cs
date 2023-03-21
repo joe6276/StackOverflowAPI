@@ -10,6 +10,8 @@ namespace StackOverflowAPI.Interfaces
         public Task<User> GetUserAsync(int id);
 
 
+        public Task<User> GetUserByTokenAsync(string token);
+
         public void AddUserAsync (User user);
 
 
@@ -18,6 +20,8 @@ namespace StackOverflowAPI.Interfaces
         public Task<bool> SaveChangesAsync();
 
         public Task<User> GetUserByEmail(string email);
+
+
 
     }
 }

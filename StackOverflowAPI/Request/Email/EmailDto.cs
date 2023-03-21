@@ -11,5 +11,12 @@
         public string Subject { get; set; }
 
 
+        public EmailDto(string to , string  body, string subject)
+        {
+            To= to;
+            Body= body;
+            Subject= subject;
+        }
+
     }
 }

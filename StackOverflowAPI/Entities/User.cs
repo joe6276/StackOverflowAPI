@@ -12,6 +12,13 @@ namespace StackOverflowAPI.Entities
 
         public string Password { get; set; } = string.Empty;
 
+        public string? VerificationToken { get; set; }
+
+        public DateTime? VerifiedAt { get; set; }
+
+         public string ? PasswordResetToken { get; set; }   
+
+        public DateTime? ResetTokenExpires { get; set; }
         public string Role { get; set; } = "user";
         public List<Question> Questions { get; set; } = new List<Question>();
 

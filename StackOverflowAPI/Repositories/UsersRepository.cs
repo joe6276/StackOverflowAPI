@@ -25,7 +25,13 @@ namespace StackOverflowAPI.Repositories
 
         public async Task<User> GetUserByEmail(string email)
         {
-            return await _context.users.FirstAsync(x => x.Email == email);
+            return await _context.users.Where(x => x.Email == email).FirstOrDefaultAsync();
+        }
+
+        public async Task<User> GetUserByTokenAsync(string token)
+        {
+
+            return await _context.users.Where(x => x.VerificationToken == token).FirstOrDefaultAsync();
         }
 
         public async Task<(IEnumerable<User>, PaginationMetadata)> GetUsersAsync(int pageNumber, int pageSize)
