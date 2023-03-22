@@ -28,6 +28,11 @@ namespace StackOverflowAPI.Repositories
             return await _context.users.Where(x => x.Email == email).FirstOrDefaultAsync();
         }
 
+        public async  Task<User> GetUserByResetTokenAsync(string token)
+        {
+            return await _context.users.Where(x => x.PasswordResetToken == token).FirstOrDefaultAsync();
+        }
+
         public async Task<User> GetUserByTokenAsync(string token)
         {
 
