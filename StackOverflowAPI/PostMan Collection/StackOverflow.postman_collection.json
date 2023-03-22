@@ -121,7 +121,7 @@
 							"bearer": [
 								{
 									"key": "token",
-									"value": "$token",
+									"value": "{{token}}",
 									"type": "string"
 								}
 							]
@@ -185,14 +185,47 @@
 				{
 					"name": "Get One Question",
 					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "{{token}}",
+									"type": "string"
+								}
+							]
+						},
 						"method": "GET",
-						"header": []
+						"header": [],
+						"url": {
+							"raw": "https://localhost:7247/api/Questions/2",
+							"protocol": "https",
+							"host": [
+								"localhost"
+							],
+							"port": "7247",
+							"path": [
+								"api",
+								"Questions",
+								"2"
+							]
+						}
 					},
 					"response": []
 				},
 				{
 					"name": "Update a Question",
 					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "{{token}}",
+									"type": "string"
+								}
+							]
+						},
 						"method": "PUT",
 						"header": [],
 						"body": {
@@ -205,7 +238,7 @@
 							}
 						},
 						"url": {
-							"raw": "https://localhost:7247/api/Questions/1",
+							"raw": "https://localhost:7247/api/Questions/2",
 							"protocol": "https",
 							"host": [
 								"localhost"
@@ -214,7 +247,7 @@
 							"path": [
 								"api",
 								"Questions",
-								"1"
+								"2"
 							]
 						}
 					},
@@ -223,10 +256,20 @@
 				{
 					"name": "New Request",
 					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "{{token}}",
+									"type": "string"
+								}
+							]
+						},
 						"method": "DELETE",
 						"header": [],
 						"url": {
-							"raw": "https://localhost:7247/api/Questions/1",
+							"raw": "https://localhost:7247/api/Questions/3",
 							"protocol": "https",
 							"host": [
 								"localhost"
@@ -235,7 +278,7 @@
 							"path": [
 								"api",
 								"Questions",
-								"1"
+								"3"
 							]
 						}
 					},
@@ -244,8 +287,31 @@
 				{
 					"name": "Get current User Questions",
 					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "{{token}}",
+									"type": "string"
+								}
+							]
+						},
 						"method": "GET",
-						"header": []
+						"header": [],
+						"url": {
+							"raw": "https://localhost:7247/api/Questions/currentUser",
+							"protocol": "https",
+							"host": [
+								"localhost"
+							],
+							"port": "7247",
+							"path": [
+								"api",
+								"Questions",
+								"currentUser"
+							]
+						}
 					},
 					"response": []
 				}
@@ -257,19 +323,51 @@
 				{
 					"name": "Get Answers",
 					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "{{token}}",
+									"type": "string"
+								}
+							]
+						},
 						"method": "GET",
-						"header": []
+						"header": [],
+						"url": {
+							"raw": "https://localhost:7247/api/Answer",
+							"protocol": "https",
+							"host": [
+								"localhost"
+							],
+							"port": "7247",
+							"path": [
+								"api",
+								"Answer"
+							]
+						}
 					},
 					"response": []
 				},
 				{
 					"name": "Add a new Answer",
 					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "{{token}}",
+									"type": "string"
+								}
+							]
+						},
 						"method": "POST",
 						"header": [],
 						"body": {
 							"mode": "raw",
-							"raw": "\r\n{\r\n  \"description\": \"new Answer For question 3\",\r\n  \"questionId\": 3\r\n}",
+							"raw": "\r\n{\r\n  \"description\": \"new Answer to be deleted\",\r\n  \"questionId\": 3\r\n}",
 							"options": {
 								"raw": {
 									"language": "json"
@@ -294,14 +392,47 @@
 				{
 					"name": "Get one Answer",
 					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "{{token}}",
+									"type": "string"
+								}
+							]
+						},
 						"method": "GET",
-						"header": []
+						"header": [],
+						"url": {
+							"raw": "https://localhost:7247/api/Answer/2",
+							"protocol": "https",
+							"host": [
+								"localhost"
+							],
+							"port": "7247",
+							"path": [
+								"api",
+								"Answer",
+								"2"
+							]
+						}
 					},
 					"response": []
 				},
 				{
 					"name": "Update  Answer",
 					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "{{token}}",
+									"type": "string"
+								}
+							]
+						},
 						"method": "PUT",
 						"header": [],
 						"body": {
@@ -314,7 +445,17 @@
 							}
 						},
 						"url": {
-							"raw": ""
+							"raw": "https://localhost:7247/api/Answer/1",
+							"protocol": "https",
+							"host": [
+								"localhost"
+							],
+							"port": "7247",
+							"path": [
+								"api",
+								"Answer",
+								"1"
+							]
 						}
 					},
 					"response": []
@@ -335,7 +476,7 @@
 						"method": "PUT",
 						"header": [],
 						"url": {
-							"raw": "https://localhost:7247/api/Answer/preffered/1",
+							"raw": "https://localhost:7247/api/Answer/preffered/2",
 							"protocol": "https",
 							"host": [
 								"localhost"
@@ -345,7 +486,7 @@
 								"api",
 								"Answer",
 								"preffered",
-								"1"
+								"2"
 							]
 						}
 					},
@@ -367,7 +508,7 @@
 						"method": "PUT",
 						"header": [],
 						"url": {
-							"raw": "https://localhost:7247/api/Answer/ResetPreferred/1",
+							"raw": "https://localhost:7247/api/Answer/ResetPreferred/2",
 							"protocol": "https",
 							"host": [
 								"localhost"
@@ -377,7 +518,7 @@
 								"api",
 								"Answer",
 								"ResetPreferred",
-								"1"
+								"2"
 							]
 						}
 					},
@@ -436,7 +577,7 @@
 						"header": [],
 						"body": {
 							"mode": "raw",
-							"raw": "{\r\n  \"answerid\": 2\r\n}",
+							"raw": "{\r\n  \"answerid\": 3\r\n}",
 							"options": {
 								"raw": {
 									"language": "json"
@@ -483,7 +624,7 @@
 							}
 						},
 						"url": {
-							"raw": "https://localhost:7247/api/Votes/Down/2",
+							"raw": "https://localhost:7247/api/Votes/Down/3",
 							"protocol": "https",
 							"host": [
 								"localhost"
@@ -493,7 +634,7 @@
 								"api",
 								"Votes",
 								"Down",
-								"2"
+								"3"
 							]
 						}
 					},
@@ -502,8 +643,31 @@
 				{
 					"name": "Get Votes",
 					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "{{token}}",
+									"type": "string"
+								}
+							]
+						},
 						"method": "GET",
-						"header": []
+						"header": [],
+						"url": {
+							"raw": "https://localhost:7247/api/Votes/3",
+							"protocol": "https",
+							"host": [
+								"localhost"
+							],
+							"port": "7247",
+							"path": [
+								"api",
+								"Votes",
+								"3"
+							]
+						}
 					},
 					"response": []
 				}
@@ -519,7 +683,7 @@
 						"header": [],
 						"body": {
 							"mode": "raw",
-							"raw": "{\r\n  \"name\": \"Jonathan\",\r\n  \"email\": \"jonathan@gmailcom\",\r\n  \"password\": \"Jonathan@2023\"\r\n}",
+							"raw": "{\r\n  \"name\": \"Jonathan\",\r\n  \"email\": \"ernesto75@ethereal.email\",\r\n  \"password\": \"Joel@2023\"\r\n}",
 							"options": {
 								"raw": {
 									"language": "json"
@@ -549,7 +713,7 @@
 						"header": [],
 						"body": {
 							"mode": "raw",
-							"raw": "{\r\n   \"email\": \"jonathan@gmail.com\",\r\n  \"password\": \"Jonathan@2023\"\r\n}",
+							"raw": "{\r\n  \"email\": \"joel@gmail.com\",\r\n  \"password\": \"Joel@2023\"\r\n}",
 							"options": {
 								"raw": {
 									"language": "json"
@@ -571,6 +735,95 @@
 						}
 					},
 					"response": []
+				},
+				{
+					"name": "Verify User",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"url": {
+							"raw": "https://localhost:7247/api/Auth/verify?token=dfg",
+							"protocol": "https",
+							"host": [
+								"localhost"
+							],
+							"port": "7247",
+							"path": [
+								"api",
+								"Auth",
+								"verify"
+							],
+							"query": [
+								{
+									"key": "token",
+									"value": "dfg"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Forgot Password",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"url": {
+							"raw": "https://localhost:7247/api/Auth/verify?token=567",
+							"protocol": "https",
+							"host": [
+								"localhost"
+							],
+							"port": "7247",
+							"path": [
+								"api",
+								"Auth",
+								"verify"
+							],
+							"query": [
+								{
+									"key": "token",
+									"value": "567"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Forgot Password",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"url": {
+							"raw": "https://localhost:7247/api/Auth/forgot?email=joendambuki16@gmail.com",
+							"protocol": "https",
+							"host": [
+								"localhost"
+							],
+							"port": "7247",
+							"path": [
+								"api",
+								"Auth",
+								"forgot"
+							],
+							"query": [
+								{
+									"key": "email",
+									"value": "joendambuki16@gmail.com"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Reset Password",
+					"request": {
+						"method": "GET",
+						"header": []
+					},
+					"response": []
 				}
 			]
 		},
@@ -580,27 +833,82 @@
 				{
 					"name": "Get Comments",
 					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "{{token}}",
+									"type": "string"
+								}
+							]
+						},
 						"method": "GET",
-						"header": []
+						"header": [],
+						"url": {
+							"raw": "https://localhost:7247/api/Comments",
+							"protocol": "https",
+							"host": [
+								"localhost"
+							],
+							"port": "7247",
+							"path": [
+								"api",
+								"Comments"
+							]
+						}
 					},
 					"response": []
 				},
 				{
 					"name": "Get a Comment",
 					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "{{token}}",
+									"type": "string"
+								}
+							]
+						},
 						"method": "GET",
-						"header": []
+						"header": [],
+						"url": {
+							"raw": "https://localhost:7247/api/Comments/5",
+							"protocol": "https",
+							"host": [
+								"localhost"
+							],
+							"port": "7247",
+							"path": [
+								"api",
+								"Comments",
+								"5"
+							]
+						}
 					},
 					"response": []
 				},
 				{
 					"name": "Add Comment",
 					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "{{token}}",
+									"type": "string"
+								}
+							]
+						},
 						"method": "POST",
 						"header": [],
 						"body": {
 							"mode": "raw",
-							"raw": "{\r\n  \"answerId\": 0,\r\n  \"description\": \"string\"\r\n}",
+							"raw": "{\r\n  \"answerId\": 2,\r\n  \"description\": \"\"\r\n}",
 							"options": {
 								"raw": {
 									"language": "json"
@@ -638,7 +946,7 @@
 						"method": "DELETE",
 						"header": [],
 						"url": {
-							"raw": "https://localhost:7247/api/Comments/4",
+							"raw": "https://localhost:7247/api/Comments/10",
 							"protocol": "https",
 							"host": [
 								"localhost"
@@ -647,7 +955,7 @@
 							"path": [
 								"api",
 								"Comments",
-								"4"
+								"10"
 							]
 						}
 					},
@@ -655,11 +963,18 @@
 				},
 				{
 					"name": "Update Comment",
-					"protocolProfileBehavior": {
-						"disableBodyPruning": true
-					},
 					"request": {
-						"method": "GET",
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "{{token}}",
+									"type": "string"
+								}
+							]
+						},
+						"method": "PUT",
 						"header": [],
 						"body": {
 							"mode": "raw",
@@ -669,6 +984,19 @@
 									"language": "json"
 								}
 							}
+						},
+						"url": {
+							"raw": "https://localhost:7247/api/Comments/5",
+							"protocol": "https",
+							"host": [
+								"localhost"
+							],
+							"port": "7247",
+							"path": [
+								"api",
+								"Comments",
+								"5"
+							]
 						}
 					},
 					"response": []
@@ -681,10 +1009,20 @@
 				{
 					"name": "DeleteUser",
 					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "{{token}}",
+									"type": "string"
+								}
+							]
+						},
 						"method": "DELETE",
 						"header": [],
 						"url": {
-							"raw": "https://localhost:7247/api/Admin/user/1",
+							"raw": "https://localhost:7247/api/Admin/user/7",
 							"protocol": "https",
 							"host": [
 								"localhost"
@@ -694,7 +1032,7 @@
 								"api",
 								"Admin",
 								"user",
-								"1"
+								"7"
 							]
 						}
 					},
@@ -703,10 +1041,20 @@
 				{
 					"name": "Delete Question",
 					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "{{token}}",
+									"type": "string"
+								}
+							]
+						},
 						"method": "DELETE",
 						"header": [],
 						"url": {
-							"raw": "https://localhost:7247/api/Admin/question/1",
+							"raw": "https://localhost:7247/api/Admin/question/4",
 							"protocol": "https",
 							"host": [
 								"localhost"
@@ -716,7 +1064,7 @@
 								"api",
 								"Admin",
 								"question",
-								"1"
+								"4"
 							]
 						}
 					},
@@ -725,10 +1073,20 @@
 				{
 					"name": "Delete Answer",
 					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "{{token}}",
+									"type": "string"
+								}
+							]
+						},
 						"method": "DELETE",
 						"header": [],
 						"url": {
-							"raw": "https://localhost:7247/api/Admin/answer/1",
+							"raw": "https://localhost:7247/api/Admin/answer/4",
 							"protocol": "https",
 							"host": [
 								"localhost"
@@ -738,7 +1096,7 @@
 								"api",
 								"Admin",
 								"answer",
-								"1"
+								"4"
 							]
 						}
 					},
@@ -747,10 +1105,20 @@
 				{
 					"name": "Delete Comments",
 					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "{{token}}",
+									"type": "string"
+								}
+							]
+						},
 						"method": "DELETE",
 						"header": [],
 						"url": {
-							"raw": "https://localhost:7247/api/Admin/comment/1",
+							"raw": "https://localhost:7247/api/Admin/comment/9",
 							"protocol": "https",
 							"host": [
 								"localhost"
@@ -760,7 +1128,7 @@
 								"api",
 								"Admin",
 								"comment",
-								"1"
+								"9"
 							]
 						}
 					},
