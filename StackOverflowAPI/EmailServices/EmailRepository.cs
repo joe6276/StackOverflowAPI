@@ -19,6 +19,7 @@ namespace StackOverflowAPI.EmailServices
             var email = new MimeMessage();
             email.From.Add(MailboxAddress.Parse(_configuration.GetSection("EmailUsername").Value));
             email.To.Add(MailboxAddress.Parse(emailDto.To));
+           
 
             email.Subject = emailDto.Subject;
             email.Body = new TextPart(TextFormat.Html) { Text = emailDto.Body };

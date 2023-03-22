@@ -1,10 +1,10 @@
 ﻿namespace StackOverflowAPI.EmailServices
 {
-    public class ForgotPassword
+    public class Verify
     {
         private string template { get; set; }
 
-        public ForgotPassword (string Name , string message)
+        public Verify (string Name , string message)
         {
             template =$@"
 <!DOCTYPE html>
@@ -40,12 +40,12 @@
                 </tr>
                 <tr>
                     <td>
-                        <p> Hello {Name} StackOverflowLite Forgot </p></h2>
+                        <p> Hello {Name} Wlecome to stackOverflowLite</p></h2>
                         <p style=""color: black;font-size: 30px; margin: 10px 0px;font-weight: 400;"">
-                            Click the following link to Reset Password:
+                            Follow the Following  Verify your Account
                            </p>
                         <a style=""color: black;font-size: 20px;Margin: 10px 0px;font-weight: 400; max-width: 500px;"" href=""https://localhost:7247/api/Auth/login/{message}"">
-                               Reset Password
+                                Verify
                             </a>
                        
                         

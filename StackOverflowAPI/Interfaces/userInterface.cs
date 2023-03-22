@@ -21,6 +21,8 @@ namespace StackOverflowAPI.Interfaces
 
         public Task<User> GetUserByEmail(string email);
 
+        public Task<User> GetUserByResetTokenAsync(string token);
+
 
 
     }

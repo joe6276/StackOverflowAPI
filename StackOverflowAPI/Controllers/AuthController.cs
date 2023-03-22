@@ -6,8 +6,10 @@ using StackOverflowAPI.EmailServices;
 using StackOverflowAPI.Entities;
 using StackOverflowAPI.Interfaces;
 using StackOverflowAPI.Request;
+using StackOverflowAPI.Request.Auth;
 using StackOverflowAPI.Request.Email;
 using StackOverflowAPI.Request.User;
+using StackOverflowAPI.Response.Auth;
 using StackOverflowAPI.Response.User;
 using System.IdentityModel.Tokens.Jwt;
 using System.Security.Claims;
@@ -34,7 +36,15 @@ namespace StackOverflowAPI.Controllers
 
         [HttpPost("register")]
         public async Task<ActionResult<UserAddResponse>> AddUsers(UserAdd user)
-        {
+        {   
+
+            var checkUser = await _userInterface.GetUserByEmail(user.Email);
+
+            if(checkUser != null) {
+
+                return BadRequest(new AuthResponse(400, "Email in Use Already "));
+            }
+
             var userInstance = _mapper.Map<User>(user);
             userInstance.Password =  BCrypt.Net.BCrypt.HashPassword(user.Password);
                  var token = CreateRandomToken();
@@ -42,8 +52,8 @@ namespace StackOverflowAPI.Controllers
             _userInterface.AddUserAsync(userInstance);
             await _userInterface.SaveChangesAsync();
             // send user an Email
-            var forgot = new ForgotPassword(user.Name, token);
-            var email = new EmailDto(user.Email, forgot.getTemplate(), "Verify User");
+            var verify = new Verify(user.Name, token);
+            var email = new EmailDto(user.Email, verify.getTemplate(), "Verify User");
             _emailInterface.sendEmail(email);
             return Ok(new UserAddResponse(201, "User Created Successfully"));
         }
@@ -55,13 +65,13 @@ namespace StackOverflowAPI.Controllers
 
             if(currentUser == null)
             {
-                return BadRequest("User not Found");
+                return BadRequest(new AuthResponse(400, "Invalid Credentials"));
             }
 
             var valid = BCrypt.Net.BCrypt.Verify(user.Password, currentUser.Password);
             if(!valid)
             {
-                return BadRequest("User not Found");
+                return BadRequest(new AuthResponse(400, "Invalid Credentials"));
             }
 
             if (currentUser.VerifiedAt == null)
@@ -76,22 +86,70 @@ namespace StackOverflowAPI.Controllers
 
         [HttpPost("verify")]
 
-        public async Task<ActionResult<string>> VerifyUser( string token)
+        public async Task<ActionResult<AuthResponse>> VerifyUser( string token)
         {
             var user = await _userInterface.GetUserByTokenAsync(token);
 
             if(user == null)
             {
-                return BadRequest("user Not Found");
+                return BadRequest( new AuthResponse(400, "user Not Found" ));
+            }
+
+            if(user.VerifiedAt != null)
+            {
+                return Ok(new AuthResponse(204, "You already Verified"));
             }
 
             user.VerifiedAt =DateTime.Now;
             await _userInterface.SaveChangesAsync();
 
 
-            return Ok("user successfully Verified");
+            return Ok( new AuthResponse(200, "user successfully Verified"));
+        }
+        [HttpPost("forgot")]
+
+        public async Task<ActionResult<AuthResponse>> forgotPassword (ForgotRequest request )
+        {
+            var user =await _userInterface.GetUserByEmail(request.Email);
+            var resetToken = CreateRandomToken();
+            if (user == null)
+            {
+                return BadRequest(new AuthResponse(400, "user Not Found"));
+            }
+            var forgot = new ForgotPassword(user.Name, resetToken);
+            var emailToSent = new EmailDto(user.Email,forgot.getTemplate(),"Password Reset" );
+            _emailInterface.sendEmail(emailToSent);
+
+         
+
+            user.PasswordResetToken = resetToken;
+            user.ResetTokenExpires= DateTime.Now.AddHours(3);   
+            await _userInterface.SaveChangesAsync();
+
+           
+            return Ok(new AuthResponse(200, "User password Reset"));
+
         }
 
+        [HttpPost("reset")]
+
+        public async Task<ActionResult<AuthResponse>> resetPassword(string resetToken, ResetPassword resetPassword)
+        {
+            var user = await _userInterface.GetUserByResetTokenAsync(resetToken);
+
+            if (user == null || user.ResetTokenExpires < DateTime.Now)
+            {
+                return BadRequest(new AuthResponse(400, "user Not Found"));
+            }
+
+            user.Password = BCrypt.Net.BCrypt.HashPassword(resetPassword.Password);
+            user.PasswordResetToken = null;
+            user.ResetTokenExpires=null;
+            await _userInterface.SaveChangesAsync();
+            return Ok(new AuthResponse(200, "Password Updated Successfully"));
+
+
+        }
         private string CreateToken(User user)
         {   
 
